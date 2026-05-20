@@ -1,1 +1,0 @@
-# ethereum_like_coin
