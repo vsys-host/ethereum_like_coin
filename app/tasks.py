@@ -46,8 +46,9 @@ def post_payout_results(data, symbol):
             time.sleep(10)
 
 
-@celery.task()
-def refresh_balances():
+@celery.task(bind=True)
+@skip_if_running
+def refresh_balances(self):
     updated = 0
 
     try:
