@@ -43,14 +43,14 @@ def get_all_metrics():
         return None
 
     try:
-        connected = w3.is_connected()  # FIX: method, not property
+        connected = w3.is_connected()
     except Exception:
         connected = False
 
     if not connected:
-        return {f"{_chain_name}_fullnode_status": 0}
+        return {"fullnode_status": 0}
 
-    result = {f"{_chain_name}_fullnode_status": 1}
+    result = {"fullnode_status": 1}
 
     # --- fullnode block ---
     try:
@@ -94,7 +94,7 @@ def get_metrics():
 
         evm_fullnode_status.set(data.get("fullnode_status", 0))
 
-        if data[f"{_chain_name}_fullnode_status"] == 1:
+        if data[f"fullnode_status"] == 1:
             evm_fullnode_last_block.set(data.get("last_fullnode_block_number", 0))
             evm_fullnode_last_block_timestamp.set(
                 data.get("last_fullnode_block_timestamp", 0)
